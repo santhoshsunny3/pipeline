@@ -3,18 +3,24 @@ pipeline {
   stages {
     stage('compile') {
       steps {
-        build(job: 'compile', quietPeriod: -5)
+        withMaven(maven : 'maven_3_6_0') {
+          sh 'mvn clean compile'
+        }
       }
     }
     stage('Test') {
       steps {
-        build(job: 'Test', quietPeriod: -5)
+        withMaven(maven : 'maven_3_6_0') {
+          sh 'mvn Test'
+        } 
       }
     }
-    stage('package') {
+    stage('Deployment stage') {
       steps {
-        build(job: 'package', quietPeriod: -5)
+       withMaven(maven : 'maven_3_6_0') {
+          sh 'mvn deploy'
+        }
       }
     }
-    }
+  }
 }
