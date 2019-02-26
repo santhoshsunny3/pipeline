@@ -3,7 +3,9 @@ pipeline {
   stages {
      stage('compile') {
       steps {
-        build(job: 'mvn clean compile', quietPeriod: -5)
+        withMaven(maven : ''maven_3_6_0) {
+          sh 'mvn clean compile'
+        }
       }
     }
   }
