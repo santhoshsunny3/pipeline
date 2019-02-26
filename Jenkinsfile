@@ -2,9 +2,8 @@ pipeline {
   agent any
   stages {
      stage('compile') {
-      steps  {
-          sh 'mvn clean compile'
-        }
+      steps {
+        build(job: 'compile', quietPeriod: -5)
       }
     }
   }
