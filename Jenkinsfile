@@ -3,7 +3,7 @@ pipeline {
   stages {
      stage('compile') {
       steps {
-        build(job: 'compile', quietPeriod: -5)
+        build(job: 'mvn clean compile', quietPeriod: -5)
       }
     }
   }
