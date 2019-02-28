@@ -3,7 +3,9 @@ pipeline {
   stages {
      stage('compile') {
       steps {
-        build(job: 'compile', quietPeriod: -5)
+        env.PATH = "${mvnHome}/bin:${env.PATH}"{
+          sh 'mvn -B clean verify'
+        }
       }
     }
   }
